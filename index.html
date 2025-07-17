@@ -8,8 +8,15 @@
       (function () {
         const params = new URLSearchParams(window.location.search);
         const target = params.get("url");
+
         if (target) {
+          // Open the target in the current tab
           window.location.href = target;
+
+          // Then go back after a short delay
+          setTimeout(() => {
+            history.back();
+          }, 1000); // 2 seconds is a safe delay to allow the redirect
         } else {
           document.body.innerText = "Missing 'url' parameter.";
         }
